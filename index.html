@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>오늘 뭐 입지?</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>오늘 뭐 입지? 🌤️</h1>
+      <p class="subtitle">날씨와 미세먼지를 보고 코디와 마스크 착용을 추천해드려요</p>
+    </header>
+
+    <form id="search-form" class="search-bar">
+      <input
+        id="city-input"
+        type="text"
+        placeholder="도시 이름을 입력하세요 (예: 서울, 부산, 제주)"
+        value="서울"
+        autocomplete="off"
+      />
+      <button type="submit">검색</button>
+      <button type="button" id="geo-btn" title="내 위치로 찾기">📍 내 위치</button>
+    </form>
+
+    <div id="status" class="status" hidden></div>
+
+    <main id="result" class="result" hidden>
+      <section class="card weather-card">
+        <div class="card-title">현재 날씨</div>
+        <div class="weather-main">
+          <span id="weather-icon" class="weather-icon">☀️</span>
+          <div class="weather-temps">
+            <span id="temp" class="temp">--°</span>
+            <span id="feels-like" class="feels-like">체감 --°</span>
+          </div>
+        </div>
+        <div class="location" id="location-name">-</div>
+        <div class="weather-details">
+          <div><span class="label">날씨</span><span id="weather-desc">-</span></div>
+          <div><span class="label">습도</span><span id="humidity">-</span></div>
+          <div><span class="label">바람</span><span id="wind">-</span></div>
+        </div>
+      </section>
+
+      <section class="card outfit-card">
+        <div class="card-title">오늘의 옷차림 추천</div>
+        <div class="outfit-main">
+          <span id="outfit-icon" class="outfit-icon">👕</span>
+          <div id="outfit-title" class="outfit-title">-</div>
+        </div>
+        <ul id="outfit-list" class="outfit-list"></ul>
+        <div id="outfit-extra" class="outfit-extra"></div>
+      </section>
+
+      <section class="card air-card">
+        <div class="card-title">미세먼지 &amp; 마스크</div>
+        <div id="air-body" class="air-body">
+          <div class="air-values">
+            <div class="air-value">
+              <span class="label">미세먼지(PM10)</span>
+              <span id="pm10-value">-</span>
+              <span id="pm10-grade" class="grade">-</span>
+            </div>
+            <div class="air-value">
+              <span class="label">초미세먼지(PM2.5)</span>
+              <span id="pm25-value">-</span>
+              <span id="pm25-grade" class="grade">-</span>
+            </div>
+          </div>
+          <div class="mask-recommend">
+            <span id="mask-icon" class="mask-icon">😷</span>
+            <span id="mask-text">-</span>
+          </div>
+          <div id="air-note" class="air-note"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

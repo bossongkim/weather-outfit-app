@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: weather-outfit-app
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: AIRKOREA_SERVICE_KEY
+        sync: false
