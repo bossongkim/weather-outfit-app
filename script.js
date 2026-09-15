@@ -23,7 +23,8 @@ const els = {
   outfitBottom: document.getElementById("outfit-bottom"),
   outfitOuter: document.getElementById("outfit-outer"),
   outfitOuterRow: document.getElementById("outfit-outer-row"),
-  outfitList: document.getElementById("outfit-list"),
+  outfitAccessories: document.getElementById("outfit-accessories"),
+  outfitAccessoriesRow: document.getElementById("outfit-accessories-row"),
   outfitExtra: document.getElementById("outfit-extra"),
   pm10Value: document.getElementById("pm10-value"),
   pm10Grade: document.getElementById("pm10-grade"),
@@ -250,14 +251,13 @@ function renderOutfit(current) {
     els.outfitOuterRow.hidden = true;
   }
 
-  els.outfitList.innerHTML = "";
   const accessories = outfit.accessories || [];
-  accessories.forEach((item) => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    els.outfitList.appendChild(li);
-  });
-  els.outfitList.hidden = accessories.length === 0;
+  if (accessories.length > 0) {
+    els.outfitAccessories.textContent = accessories.join(", ");
+    els.outfitAccessoriesRow.hidden = false;
+  } else {
+    els.outfitAccessoriesRow.hidden = true;
+  }
 
   const extras = [];
   const code = current.weather_code;
