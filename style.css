@@ -201,8 +201,19 @@ body {
 .outfit-row {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
   font-size: 0.92rem;
+}
+
+.outfit-tag {
+  flex: 0 0 auto;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: #e7ecf3;
+  border-radius: 999px;
+  padding: 2px 9px;
 }
 
 .outfit-row-label {

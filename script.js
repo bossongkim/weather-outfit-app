@@ -18,6 +18,8 @@ const els = {
   outfitIcon: document.getElementById("outfit-icon"),
   outfitTitle: document.getElementById("outfit-title"),
   outfitTop: document.getElementById("outfit-top"),
+  outfitSleeve: document.getElementById("outfit-sleeve"),
+  outfitThickness: document.getElementById("outfit-thickness"),
   outfitBottom: document.getElementById("outfit-bottom"),
   outfitOuter: document.getElementById("outfit-outer"),
   outfitOuterRow: document.getElementById("outfit-outer-row"),
@@ -238,6 +240,8 @@ function renderOutfit(current) {
   els.outfitIcon.textContent = outfit.icon;
   els.outfitTitle.textContent = outfit.title;
   els.outfitTop.textContent = outfit.top;
+  els.outfitSleeve.textContent = outfit.sleeve;
+  els.outfitThickness.textContent = outfit.thickness;
   els.outfitBottom.textContent = outfit.bottom;
   if (outfit.outer) {
     els.outfitOuter.textContent = outfit.outer;
@@ -275,6 +279,8 @@ function getOutfit(t) {
       icon: "🩳",
       title: "한여름 옷차림",
       top: "민소매 또는 반팔",
+      sleeve: "반팔",
+      thickness: "얇은 소재",
       bottom: "반바지",
       outer: null,
       accessories: ["시원한 소재의 원피스도 좋아요"],
@@ -285,6 +291,8 @@ function getOutfit(t) {
       icon: "👕",
       title: "더운 여름 옷차림",
       top: "반팔 티셔츠",
+      sleeve: "반팔",
+      thickness: "얇은 소재",
       bottom: "반바지 또는 얇은 면바지",
       outer: null,
       accessories: ["린넨 소재 셔츠 추천"],
@@ -295,6 +303,8 @@ function getOutfit(t) {
       icon: "👚",
       title: "선선한 옷차림",
       top: "얇은 긴팔 티셔츠, 셔츠",
+      sleeve: "긴팔",
+      thickness: "얇은 소재",
       bottom: "긴바지 (면바지, 슬랙스)",
       outer: "얇은 가디건 (선택)",
       accessories: [],
@@ -305,6 +315,8 @@ function getOutfit(t) {
       icon: "🧥",
       title: "가벼운 겉옷이 필요해요",
       top: "얇은 니트, 맨투맨",
+      sleeve: "긴팔",
+      thickness: "보통 두께",
       bottom: "긴바지 (청바지, 면바지)",
       outer: "가디건 또는 청재킷",
       accessories: [],
@@ -315,6 +327,8 @@ function getOutfit(t) {
       icon: "🧥",
       title: "쌀쌀한 날씨",
       top: "니트, 맨투맨",
+      sleeve: "긴팔",
+      thickness: "보통 두께",
       bottom: "긴바지 (청바지, 면바지)",
       outer: "자켓 또는 가디건",
       accessories: ["가벼운 스카프"],
@@ -325,6 +339,8 @@ function getOutfit(t) {
       icon: "🧣",
       title: "제법 추운 날씨",
       top: "니트, 맨투맨",
+      sleeve: "긴팔",
+      thickness: "두꺼운 소재",
       bottom: "기모 안감 긴바지",
       outer: "코트, 자켓",
       accessories: [],
@@ -335,6 +351,8 @@ function getOutfit(t) {
       icon: "🧤",
       title: "추운 날씨",
       top: "히트텍 등 내복 + 니트",
+      sleeve: "긴팔",
+      thickness: "두꺼운 소재",
       bottom: "두꺼운 긴바지",
       outer: "두꺼운 코트, 플리스",
       accessories: ["목도리", "장갑"],
@@ -344,6 +362,8 @@ function getOutfit(t) {
     icon: "🥶",
     title: "한파! 완전 무장하세요",
     top: "내복 + 두꺼운 니트",
+    sleeve: "긴팔",
+    thickness: "매우 두꺼운 소재",
     bottom: "기모 레깅스 + 두꺼운 긴바지",
     outer: "패딩, 두꺼운 코트",
     accessories: ["목도리", "장갑", "방한모"],
