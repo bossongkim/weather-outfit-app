@@ -17,6 +17,10 @@ const els = {
   wind: document.getElementById("wind"),
   outfitIcon: document.getElementById("outfit-icon"),
   outfitTitle: document.getElementById("outfit-title"),
+  outfitTop: document.getElementById("outfit-top"),
+  outfitBottom: document.getElementById("outfit-bottom"),
+  outfitOuter: document.getElementById("outfit-outer"),
+  outfitOuterRow: document.getElementById("outfit-outer-row"),
   outfitList: document.getElementById("outfit-list"),
   outfitExtra: document.getElementById("outfit-extra"),
   pm10Value: document.getElementById("pm10-value"),
@@ -233,12 +237,23 @@ function renderOutfit(current) {
   const outfit = getOutfit(t);
   els.outfitIcon.textContent = outfit.icon;
   els.outfitTitle.textContent = outfit.title;
+  els.outfitTop.textContent = outfit.top;
+  els.outfitBottom.textContent = outfit.bottom;
+  if (outfit.outer) {
+    els.outfitOuter.textContent = outfit.outer;
+    els.outfitOuterRow.hidden = false;
+  } else {
+    els.outfitOuterRow.hidden = true;
+  }
+
   els.outfitList.innerHTML = "";
-  outfit.items.forEach((item) => {
+  const accessories = outfit.accessories || [];
+  accessories.forEach((item) => {
     const li = document.createElement("li");
     li.textContent = item;
     els.outfitList.appendChild(li);
   });
+  els.outfitList.hidden = accessories.length === 0;
 
   const extras = [];
   const code = current.weather_code;
@@ -259,55 +274,79 @@ function getOutfit(t) {
     return {
       icon: "🩳",
       title: "한여름 옷차림",
-      items: ["민소매, 반팔 티셔츠", "반바지, 짧은 치마", "시원한 소재의 원피스"],
+      top: "민소매 또는 반팔",
+      bottom: "반바지",
+      outer: null,
+      accessories: ["시원한 소재의 원피스도 좋아요"],
     };
   }
   if (t >= 23) {
     return {
       icon: "👕",
       title: "더운 여름 옷차림",
-      items: ["반팔 티셔츠", "반바지, 얇은 면바지", "린넨 셔츠"],
+      top: "반팔 티셔츠",
+      bottom: "반바지 또는 얇은 면바지",
+      outer: null,
+      accessories: ["린넨 소재 셔츠 추천"],
     };
   }
   if (t >= 20) {
     return {
       icon: "👚",
       title: "선선한 옷차림",
-      items: ["얇은 긴팔 티셔츠, 셔츠", "면바지, 슬랙스", "얇은 가디건"],
+      top: "얇은 긴팔 티셔츠, 셔츠",
+      bottom: "긴바지 (면바지, 슬랙스)",
+      outer: "얇은 가디건 (선택)",
+      accessories: [],
     };
   }
   if (t >= 17) {
     return {
       icon: "🧥",
       title: "가벼운 겉옷이 필요해요",
-      items: ["얇은 니트, 맨투맨", "가디건, 청재킷", "청바지, 면바지"],
+      top: "얇은 니트, 맨투맨",
+      bottom: "긴바지 (청바지, 면바지)",
+      outer: "가디건 또는 청재킷",
+      accessories: [],
     };
   }
   if (t >= 12) {
     return {
       icon: "🧥",
       title: "쌀쌀한 날씨",
-      items: ["자켓, 가디건, 니트", "청바지, 면바지", "가벼운 스카프"],
+      top: "니트, 맨투맨",
+      bottom: "긴바지 (청바지, 면바지)",
+      outer: "자켓 또는 가디건",
+      accessories: ["가벼운 스카프"],
     };
   }
   if (t >= 9) {
     return {
       icon: "🧣",
       title: "제법 추운 날씨",
-      items: ["코트, 자켓", "니트, 맨투맨", "기모 안감 바지"],
+      top: "니트, 맨투맨",
+      bottom: "기모 안감 긴바지",
+      outer: "코트, 자켓",
+      accessories: [],
     };
   }
   if (t >= 5) {
     return {
       icon: "🧤",
       title: "추운 날씨",
-      items: ["두꺼운 코트, 플리스", "히트텍 등 내복", "목도리, 장갑"],
+      top: "히트텍 등 내복 + 니트",
+      bottom: "두꺼운 긴바지",
+      outer: "두꺼운 코트, 플리스",
+      accessories: ["목도리", "장갑"],
     };
   }
   return {
     icon: "🥶",
     title: "한파! 완전 무장하세요",
-    items: ["패딩, 두꺼운 코트", "목도리, 장갑, 방한모", "기모 레깅스, 내복"],
+    top: "내복 + 두꺼운 니트",
+    bottom: "기모 레깅스 + 두꺼운 긴바지",
+    outer: "패딩, 두꺼운 코트",
+    accessories: ["목도리", "장갑", "방한모"],
   };
 }
 
